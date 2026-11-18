@@ -91,12 +91,12 @@
     <div class="container">
       <div class="section-head left">
         <span class="tag">Jadwal</span>
-        <h2>Kegiatan Harian</h2>
+        <h2>Jadwal Pelajaran Kelas 1–6</h2>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>Waktu</th><th>Kegiatan Kelas 1–3</th><th>Kegiatan Kelas 4–6</th></tr>
+            <tr><th>Waktu</th><th>Kelas 1–3</th><th>Kelas 4–6</th></tr>
           </thead>
           <tbody>
             <tr><td>07.00 – 07.15</td><td>Upacara / senam / yel-yel</td><td>Upacara / senam / yel-yel</td></tr>
@@ -106,8 +106,8 @@
             <tr><td>09.45 – 11.30</td><td>Kegiatan pembelajaran 3–4</td><td>Kegiatan pembelajaran 3–4</td></tr>
             <tr><td>11.30 – 12.00</td><td>Istirahat &amp; sholat Dzuhur</td><td>Istirahat &amp; sholat Dzuhur</td></tr>
             <tr><td>12.00 – 13.00</td><td>Pulang kelas 1–3 (Senin–Kamis)</td><td>Kegiatan pembelajaran 5</td></tr>
-            <tr><td>13.00 – 14.00</td><td>—</td><td>Pembelajaran / ekstrakurikuler</td></tr>
-          </tbody>
+            <tr><td>13.00 – 14.00</td><td>Pembelajaran / kirim murid</td><td>Pembelajaran / ekstrakurikuler</td></tr>
+          </tbody><!--jadwal-->
         </table>
       </div>
     </div>
@@ -129,11 +129,31 @@
         <div class="card center"><div class="icon">🤖</div><h3>Robotic Club</h3><p>Sabtu, kelas 4–6.</p></div>
         <div class="card center"><div class="icon">🎤</div><h3>Seni Musik</h3><p>Anggkl &amp; Angklung.</p></div>
         <div class="card center"><div class="icon">🕊️</div><h3>PBSB / Rohis</h3><p>Kamis sore.</p></div>
+        <div class="card center"><div class="icon">🕌</div><h3>BTQ</h3><p>Tiap Selasa &amp; Rabu pagi.</p></div>
+        <div class="card center"><div class="icon">🎼</div><h3>Karawitan</h3><p>Jumat sore, dengan gamelan Jawa.</p></div>
       </div>
     </div>
   </section>
 
   <!-- Kalender akademik -->
+  <!-- Jadwal per kelas (dapat diubah admin) -->
+  <section aria-label="Jadwal per kelas">
+    <div class="container">
+      <div class="section-head left">
+        <span class="tag">Per Kelas</span>
+        <h2>Jadwal Pembelajaran Tiap Kelas</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card"><h3> Kelas 1</h3><div class="table-wrap mt-2"><table><thead><tr><th>Jam</th><th>Pelajaran</th></tr></thead><tbody id="jadwal-kelas1"><tr><td>07.00-07.15</td><td>Upacara / literasi</td></tr><tr><td>07.15-10.00</td><td>Tematik</td></tr><tr><td>10.00-12.00</td><td>Numerasi &amp; Membaca</td></tr></tbody></table></div></div>
+        <div class="card"><h3>Kelas 2</h3><div class="table-wrap mt-2"><table><thead><tr><th>Jam</th><th>Pelajaran</th></tr></thead><tbody id="jadwal-kelas2"><tr><td>07.00-07.15</td><td>Upacara / literasi</td></tr><tr><td>07.15-10.00</td><td>Tematik</td></tr><tr><td>10.00-12.00</td><td>Numerasi &amp; Membaca</td></tr></tbody></table></div></div>
+        <div class="card"><h3>Kelas 3</h3><div class="table-wrap mt-2"><table><thead><tr><th>Jam</th><th>Pelajaran</th></tr></thead><tbody id="jadwal-kelas3"><tr><td>07.00-07.15</td><td>Upacara / literasi</td></tr><tr><td>07.15-09.45</td><td>Tematik</td></tr><tr><td>09.45-12.00</td><td>IPAS &amp; Matematika</td></tr></tbody></table></div></div>
+        <div class="card"><h3>Kelas 4</h3><div class="table-wrap mt-2"><table><thead><tr><th>Jam</th><th>Pelajaran</th></tr></thead><tbody id="jadwal-kelas4"><tr><td>07.00-07.15</td><td>Upacara / literasi</td></tr><tr><td>07.15-09.45</td><td>B. Indonesia &amp; Matematika</td></tr><tr><td>09.45-14.00</td><td>IPAS, PPKn, Seni</td></tr></tbody></table></div></div>
+        <div class="card"><h3>Kelas 5</h3><div class="table-wrap mt-2"><table><thead><tr><th>Jam</th><th>Pelajaran</th></tr></thead><tbody id="jadwal-kelas5"><tr><td>07.00-07.15</td><td>Upacara / literasi</td></tr><tr><td>07.15-09.45</td><td>Matematika &amp; IPAS</td></tr><tr><td>09.45-14.00</td><td>B. Indonesia, B. Inggris, PJOK</td></tr></tbody></table></div></div>
+        <div class="card"><h3>Kelas 6</h3><div class="table-wrap mt-2"><table><thead><tr><th>Jam</th><th>Pelajaran</th></tr></thead><tbody id="jadwal-kelas6"><tr><td>07.00-07.15</td><td>Upacara / literasi</td></tr><tr><td>07.15-09.45</td><td>Matematika &amp; IPA</td></tr><tr><td>09.45-14.00</td><td>B. Indonesia, IPS, PPKn</td></tr></tbody></table></div></div>
+      </div>
+    </div>
+  </section>
+
   <section aria-label="Kalender Akademik" style="background:var(--green-50);">
     <div class="container">
       <div class="section-head left">
