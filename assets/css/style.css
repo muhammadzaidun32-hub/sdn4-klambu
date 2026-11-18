@@ -465,6 +465,15 @@ footer.site a:hover { color: #ffd75e; }
   flex-wrap: wrap;
   font-size: .82rem;
 }
+.foot-bottom .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+/* badge credit mengalir sebagai teks di baris footer (non-melayang) */
+.foot-bottom .credit-badge { flex-shrink: 0; }
 .socials { display: flex; gap: 10px; margin-top: 16px; }
 .socials a {
   width: 38px; height: 38px;
@@ -534,28 +543,6 @@ footer.site a:hover { color: #ffd75e; }
 }
 .credit-badge b { color: #ffd75e; font-weight: 800; }
 .credit-badge:hover { color: #fff; }
-
-/* ============ Credit badge (kanan bawah) ============ */
-.credit-badge {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 1200;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--green-800), var(--green-900));
-  color: #eafff3;
-  font-size: .78rem;
-  font-weight: 600;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
-  border: 1px solid rgba(255, 255, 255, .22);
-  transition: .2s;
-}
-.credit-badge b { color: #ffd75e; font-weight: 800; }
-.credit-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .32); }
 
 /* ============ WhatsApp float + Lightbox ============ */
 .wa-float {
