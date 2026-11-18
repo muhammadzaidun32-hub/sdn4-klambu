@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="460" fill="url(#sky)"/>
+  <circle cx="540" cy="80" r="42" fill="#fbbf24" opacity=".9"/>
+  <ellipse cx="150" cy="90" rx="55" ry="18" fill="#fff" opacity=".85"/>
+  <ellipse cx="210" cy="108" rx="40" ry="14" fill="#fff" opacity=".7"/>
+  <!-- bukit -->
+  <path d="M0 300 Q160 220 320 290 T640 280 L640 460 L0 460 Z" fill="#6ee7b7"/>
+  <path d="M0 340 Q200 280 400 340 T640 330 L640 460 L0 460 Z" fill="#34d399"/>
+  <!-- gedung sekolah -->
+  <rect x="200" y="180" width="240" height="120" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M190 184 L320 118 L450 184 Z" fill="#047857"/>
+  <rect x="305" y="118" width="30" height="30" rx="3" fill="#fbbf24"/>
+  <line x1="315" y1="90" x2="315" y2="118" stroke="#94a3b8" stroke-width="4"/>
+  <path d="M315 90 L345 98 L315 106 Z" fill="#ef4444"/>
+  <!-- pintu -->
+  <rect x="298" y="240" width="44" height="60" rx="4" fill="#047857"/>
+  <circle cx="311" cy="272" r="2.4" fill="#fbbf24"/>
+  <!-- jendela -->
+  <g fill="#bae6fd" stroke="#0284c7" stroke-width="2">
+    <rect x="218" y="205" width="34" height="30" rx="3"/>
+    <rect x="262" y="205" width="34" height="30" rx="3"/>
+    <rect x="344" y="205" width="34" height="30" rx="3"/>
+    <rect x="388" y="205" width="34" height="30" rx="3"/>
+  </g>
+  <!-- tangga -->
+  <rect x="196" y="300" width="248" height="10" rx="3" fill="#e2e8f0"/>
+  <!-- pohon -->
+  <rect x="118" y="280" width="12" height="46" rx="4" fill="#92400e"/>
+  <circle cx="124" cy="262" r="34" fill="#059669"/>
+  <circle cx="102" cy="276" r="22" fill="#10b981"/>
+  <circle cx="146" cy="276" r="22" fill="#10b981"/>
+  <rect x="522" y="290" width="11" height="38" rx="4" fill="#92400e"/>
+  <circle cx="528" cy="274" r="28" fill="#059669"/>
+  <circle cx="506" cy="286" r="18" fill="#34d399"/>
+  <!-- anak-anak bermain -->
+  <circle cx="250" cy="352" r="12" fill="#fcd9b8"/>
+  <path d="M238 382 v-16 a12 12 0 0 1 24 0 v20 z" fill="#1d4ed8"/>
+  <circle cx="285" cy="358" r="12" fill="#f5c9a3"/>
+  <path d="M273 386 v-14 a12 12 0 0 1 24 0 v18 z" fill="#dc2626"/>
+  <circle cx="322" cy="350" r="12" fill="#fcd9b8"/>
+  <path d="M310 382 v-18 a12 12 0 0 1 24 0 v22 z" fill="#059669"/>
+  <!-- tanah depan -->
+  <path d="M0 428 Q320 400 640 428 L640 460 L0 460 Z" fill="#a7f3d0"/>
+</svg>

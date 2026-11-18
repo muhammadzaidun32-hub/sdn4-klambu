@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <rect width="640" height="420" fill="#eef6ff"/>
+  <rect x="60" y="70" width="300" height="190" rx="10" fill="#ffffff" stroke="#0f2a5c" stroke-width="4"/>
+  <text x="210" y="150" text-anchor="middle" font-family="Arial" font-size="58" font-weight="bold" fill="#059669">A B C</text>
+  <path d="M110 190 L180 190 M300 215 L370 215" stroke="#f59e0b" stroke-width="10" stroke-linecap="round"/>
+  <path d="M110 215 L240 215" stroke="#1d4ed8" stroke-width="8" stroke-linecap="round"/>
+  <!-- guru -->
+  <circle cx="150" cy="230" r="24" fill="#fcd9b8"/>
+  <path d="M126 232 Q126 196 150 196 Q174 196 174 232 L166 232 Q166 212 150 210 Q134 212 134 232 Z" fill="#3f3f46"/>
+  <path d="M126 292 Q126 258 150 258 Q174 258 174 292 L174 320 L126 320 Z" fill="#065f46"/>
+  <path d="M180 262 L225 285" stroke="#065f46" stroke-width="16" stroke-linecap="round"/>
+  <!-- meja siswa -->
+  <g fill="#0f2a5c">
+    <circle cx="330" cy="352" r="13"/>
+    <circle cx="430" cy="352" r="13"/>
+    <circle cx="530" cy="352" r="13"/>
+  </g>
+  <g fill="#fcd9b8">
+    <circle cx="330" cy="332" r="0"/>
+  </g>
+  <!-- meja -->
+  <rect x="295" y="300" width="80" height="14" rx="4" fill="#f59e0b"/>
+  <rect x="395" y="300" width="80" height="14" rx="4" fill="#f59e0b"/>
+  <rect x="495" y="300" width="80" height="14" rx="4" fill="#f59e0b"/>
+  <!-- jendela -->
+  <rect x="440" y="90" width="70" height="90" rx="8" fill="#bae6fd" stroke="#0f2a5c" stroke-width="4"/>
+  <rect x="520" y="90" width="70" height="90" rx="8" fill="#bae6fd" stroke="#0f2a5c" stroke-width="4"/>
+  <path d="M440 135 H590 M475 90 V180 M555 90 V180" stroke="#0f2a5c" stroke-width="4"/>
+  <rect x="0" y="330" width="640" height="90" fill="#d1fae5"/>
+</svg>

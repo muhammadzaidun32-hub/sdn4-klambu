@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <rect width="640" height="420" fill="#dcfce7"/>
+  <!-- tenda pramuka -->
+  <path d="M120 300 L240 160 L360 300 Z" fill="#f59e0b"/>
+  <path d="M240 160 L240 300" stroke="#b45309" stroke-width="6"/>
+  <path d="M240 160 L300 300 L360 300" fill="#fbbf24"/>
+  <!-- tiang & bendera merah putih -->
+  <rect x="430" y="120" width="8" height="190" rx="4" fill="#64748b"/>
+  <rect x="438" y="126" width="64" height="22" rx="4" fill="#dc2626"/>
+  <rect x="438" y="148" width="64" height="22" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+  <!-- api unggun -->
+  <g>
+    <path d="M480 330 Q470 300 490 280 Q486 310 510 300 Q500 330 520 340 Q500 356 480 330 Z" fill="#f97316"/>
+    <path d="M492 332 Q490 316 502 306 Q500 322 514 324 Q508 338 492 332 Z" fill="#fbbf24"/>
+  </g>
+  <!-- pramuka duduk -->
+  <circle cx="200" cy="250" r="18" fill="#fcd9b8"/>
+  <path d="M182 252 Q182 224 200 224 Q218 224 218 252 L212 252 Q212 236 200 234 Q188 236 188 252 Z" fill="#7c2d12"/>
+  <path d="M182 320 Q182 272 200 272 Q218 272 218 320 Z" fill="#8b5e34"/>
+  <circle cx="300" cy="260" r="18" fill="#f5c9a3"/>
+  <path d="M282 262 Q282 234 300 234 Q318 234 318 262 L312 262 Q312 246 300 244 Q288 246 288 262 Z" fill="#1f2937"/>
+  <path d="M282 326 Q282 280 300 280 Q318 280 318 326 Z" fill="#8b5e34"/>
+  <!-- tanah -->
+  <rect x="0" y="340" width="640" height="80" fill="#86efac"/>
+</svg>

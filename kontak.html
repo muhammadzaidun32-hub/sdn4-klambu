@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hubungi SD Negeri 4 Klambu — alamat, telepon, email, dan formulir pesan. Jln. Jatidiri No. 4 Krajan RT.05/RW.02, Kec. Klambu, Kec. Klambu, Kab. Grobogan.">
+<title>Kontak — SDN 4 Klambu</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏫</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>📍 Jln. Jatidiri No. 4 Krajan RT.05/RW.02, Kec. Klambu, Kec. Klambu, Grobogan</span>
+    <span>🕐 Senin – Jumat · 07.00 – 14.00 WIB</span>
+    <a href="https://ban-pdm.id/satuanpendidikan/20313595" target="_blank" rel="noopener">🏅 Akreditasi B</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+      <div class="brand-badge">4K</div>
+      <div>
+        <b>SDN 4 KLAMBU</b>
+        <span class="sub">Kecamatan Klambu · Kab. Grobogan</span>
+      </div>
+    </a>
+    <nav class="main">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="akademik.html">Akademik</a></li>
+        <li><a href="ppdb.html">PPDB</a></li>
+        <li><a href="berita.html">Berita</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="kontak.html" class="active">Kontak</a></li>
+        <li><a href="ppdb.html" class="btn-ppdb">📝 Daftar PPDB</a></li>
+      </ul>
+    </nav>
+    <button class="burger" aria-label="Buka menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Beranda</a> / Kontak</div>
+    <h1>Hubungi Kami 📞</h1>
+    <p> Kami senang mendengar dari Anda — warga sekolah, orang tua, maupun masyarakat umum.</p>
+  </div>
+</section>
+
+<section aria-label="Info Kontak">
+  <div class="container">
+    <div class="grid grid-3">
+      <div class="card center">
+        <div class="icon">🏠</div>
+        <h3>Alamat</h3>
+        <p>Jln. Jatidiri No. 4 Krajan RT.05/RW.02, Kec. Klambu,<br>Kec. Klambu, Kab. Grobogan,<br>Jawa Tengah 58182</p>
+      </div>
+      <div class="card center">
+        <div class="icon">📞</div>
+        <h3>Telepon &amp; WhatsApp</h3>
+        <p>0812-2500-0449 (Administrasi)<br>(0292) 318-140 (Kantor)</p>
+      </div>
+      <div class="card center">
+        <div class="icon">✉</div>
+        <h3>Email</h3>
+        <p>sdn4klambu@gmail.com<br>ppdb.sdn4klambu@gmail.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Formulir Pesan" style="background:var(--green-50);">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Kirim Pesan</span>
+      <h2>Formulir Kontak</h2>
+      <p>Isi formulir di bawah — kami balas maksimal 1×24 jam kerja.</p>
+    </div>
+    <form class="card" id="kontakForm" onsubmit="event.preventDefault(); alert('Terima kasih, ' + document.getElementById('knama').value + '! Pesan Anda telah terkirim dan akan kami balas via email/WhatsApp.'); this.reset();">
+      <div class="form-grid">
+        <div><label for="knama">Nama Lengkap</label><input id="knama" name="knama" type="text" placeholder="cth: Budi Santoso" required></div>
+        <div><label for="kmail">Email</label><input id="kmail" name="kmail" type="email" placeholder="cth: budi@email.com" required></div>
+        <div class="full"><label for="ksubjek">Subjek</label><input id="ksubjek" name="ksubjek" type="text" placeholder="cth: Pertanyaan PPDB 2027" required></div>
+        <div class="full"><label for="kpesan">Pesan</label><textarea id="kpesan" name="kpesan" rows="5" placeholder="Tulis pesan Anda di sini…" required></textarea></div>
+      </div>
+      <div class="center mt-3">
+        <button class="btn btn-green" type="submit">🚀 Kirim Pesan</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section aria-label="Peta">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Lokasi</span>
+      <h2>Peta Lokasi Sekolah</h2>
+    </div>
+    <div class="table-wrap" style="border:0;">
+      <iframe src="https://www.google.com/maps?q=SDN+3+Klambu+Grobogan&output=embed" width="100%" height="380" style="border:0; border-radius:var(--radius);" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta SDN 4 Klambu"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <div class="brand-badge">4K</div>
+          <b>SDN 4 KLAMBU</b>
+        </div>
+        <p>Sekolah Dasar Negeri 3 Klambu — Kecamatan Klambu, Kabupaten Grobogan, Jawa Tengah. Menghadirkan pendidikan bermutu untuk semua.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+      <div>
+        <h4>Tautan Cepat</h4>
+        <ul class="foot-list">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="profil.html">Profil Sekolah</a></li>
+          <li><a href="akademik.html">Akademik</a></li>
+          <li><a href="ppdb.html">PPDB Online</a></li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tautan Resmi</h4>
+        <ul class="foot-list">
+          <li><a href="https://ban-pdm.id/satuanpendidikan/20313595" target="_blank" rel="noopener">Data BAN-PDM ↗</a></li>
+          <li><a href="https://sekolah.data.kemendikdasmen.go.id" target="_blank" rel="noopener">Sekolah Kita ↗</a></li>
+          <li><a href="https://dapo.kemendikdasmen.go.id" target="_blank" rel="noopener">Dapodik ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontak &amp; Alamat</h4>
+        <ul class="foot-contact">
+          <li>📍 Jln. Klambu–Terkesi RT.03/RW.05, Kec. Klambu, Kab. Grobogan, Jawa Tengah 58182</li>
+          <li>✉ sdn4klambu@gmail.com</li>
+          <li>📞 0812-2500-0449 · (0292) 318-140</li>
+          <li>🕐 Senin – Jumat · 07.00 – 14.00 WIB</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="container">
+      <span>© 2026 SDN 4 KLAMBU · NPSN 20313595 · Kecamatan Klambu, Kabupaten Grobogan, Jawa Tengah</span>
+      <span>Dibangun dengan ❤ untuk pendidikan Indonesia</span>
+    </div>
+  </div>
+</footer>
+
+<a class="credit-badge" href="#" onclick="return false">🛠️ Design by <b>Kang Zaed</b></a>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
