@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#047857"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="url(#g1)"/>
+  <circle cx="60" cy="60" r="47" fill="none" stroke="#fbbf24" stroke-width="3.5"/>
+  <!-- buku terbuka -->
+  <path d="M28 70 Q44 60 60 70 Q76 60 92 70 L92 78 Q76 68 60 78 Q44 68 28 78 Z" fill="#fff"/>
+  <path d="M32 70 Q46 61.5 58 69 L58 74 Q46 66.5 32 74 Z" fill="#d1fae5"/>
+  <path d="M88 70 Q74 61.5 62 69 L62 74 Q74 66.5 88 74 Z" fill="#d1fae5"/>
+  <!-- pena obor -->
+  <path d="M60 30 L66 44 L60 52 L54 44 Z" fill="#fbbf24"/>
+  <rect x="58" y="52" width="4" height="16" rx="2" fill="#fff"/>
+  <!-- bintang -->
+  <circle cx="38" cy="40" r="3.4" fill="#fbbf24"/>
+  <circle cx="82" cy="40" r="3.4" fill="#fbbf24"/>
+  <text x="60" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="13" fill="#fff">SDN 3</text>
+</svg>

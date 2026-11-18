@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <rect width="640" height="420" fill="#fce7f3"/>
+  <!-- panggung kecil & banner -->
+  <rect x="90" y="90" width="460" height="70" rx="10" fill="#059669"/>
+  <text x="320" y="137" text-anchor="middle" font-family="Arial" font-size="30" font-weight="bold" fill="#fff">LULUS SD 2026</text>
+  <!-- kepala siswa berjubel -->
+  <g fill="#fcd9b8">
+    <circle cx="180" cy="250" r="20"/>
+    <circle cx="250" cy="250" r="20"/>
+    <circle cx="320" cy="250" r="20"/>
+    <circle cx="390" cy="250" r="20"/>
+    <circle cx="460" cy="250" r="20"/>
+  </g>
+  <g fill="#1f2937">
+    <path d="M160 250 a20 20 0 0 1 40 0" opacity="0"/>
+    <path d="M160 244 a20 16 0 0 1 40 0 z"/>
+    <path d="M230 244 a20 16 0 0 1 40 0 z"/>
+    <path d="M300 244 a20 16 0 0 1 40 0 z"/>
+    <path d="M370 244 a20 16 0 0 1 40 0 z"/>
+    <path d="M440 244 a20 16 0 0 1 40 0 z"/>
+  </g>
+  <!-- badan wisuda -->
+  <g fill="#0f2a5c">
+    <rect x="160" y="270" width="40" height="60" rx="10"/>
+    <rect x="230" y="270" width="40" height="60" rx="10"/>
+    <rect x="300" y="270" width="40" height="60" rx="10"/>
+    <rect x="370" y="270" width="40" height="60" rx="10"/>
+    <rect x="440" y="270" width="40" height="60" rx="10"/>
+  </g>
+  <!-- toga kerah -->
+  <g fill="#f59e0b">
+    <rect x="164" y="270" width="10" height="34" rx="4"/>
+    <rect x="234" y="270" width="10" height="34" rx="4"/>
+    <rect x="304" y="270" width="10" height="34" rx="4"/>
+    <rect x="374" y="270" width="10" height="34" rx="4"/>
+    <rect x="444" y="270" width="10" height="34" rx="4"/>
+  </g>
+  <rect x="0" y="356" width="640" height="64" fill="#a7f3d0"/>
+  <text x="320" y="396" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#065f46">Selamat melanjutkan ke SMP — Generasi Baru Indonesia 🎉</text>
+</svg>

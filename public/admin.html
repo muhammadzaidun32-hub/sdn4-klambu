@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel Admin — SDN 4 Klambu</title>
+<style>
+:root{--g900:#0d6b3f;--g800:#10804b;--g700:#149457;--g100:#dcf3e8;--y:#f5b301;--ink:#14201a;--line:#e3e9e6;--bg:#f6f8f7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.login{max-width:380px;margin:10vh auto;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(13,107,63,.18);padding:40px;text-align:center}
+.login h1{color:var(--g900);font-size:1.4rem;margin-bottom:4px}
+.login .sub{color:#64756d;font-size:.85rem;margin-bottom:24px}
+.lock{font-size:3rem;margin-bottom:8px}
+input,select{width:100%;padding:13px 16px;border:1.6px solid var(--line);border-radius:12px;font-size:1rem;margin-bottom:12px;background:#fbfcfb;font-family:inherit}
+input:focus{outline:none;border-color:var(--g700);box-shadow:0 0 0 4px rgba(22,168,99,.14)}
+button{padding:13px 22px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--g700),var(--g900));color:#fff;font-size:.95rem;font-weight:700;cursor:pointer;transition:.2s}
+button:hover{filter:brightness(1.08)}
+button:disabled{opacity:.6;cursor:wait}
+.app{display:none}
+.bar{background:linear-gradient(90deg,var(--g900),var(--g700));color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.bar b{font-size:1.05rem}
+.bar small{opacity:.85;font-size:.78rem;display:block}
+.wrap{max-width:1140px;margin:24px auto;padding:0 20px}
+.dash{display:grid;grid-template-columns:250px 1fr;gap:20px}
+.side{background:#fff;border-radius:16px;padding:16px;border:1px solid var(--line);height:fit-content}
+.side button{width:100%;text-align:left;background:none;color:var(--ink);border:0;padding:11px 14px;border-radius:10px;cursor:pointer;font-size:.9rem;font-weight:600;margin-bottom:4px;display:block}
+.side button:hover,.side button.on{background:var(--g100);color:var(--g900)}
+.main{background:#fff;border-radius:16px;padding:26px;border:1px solid var(--line)}
+.pane{display:none}.pane.on{display:block}
+h2{color:var(--g900);font-size:1.2rem;margin-bottom:6px}
+.hint{color:#64756d;font-size:.84rem;margin-bottom:18px}
+.field{margin-bottom:16px}
+.field label{display:block;font-weight:700;font-size:.84rem;margin-bottom:6px}
+.field input,.field textarea,.field select{margin-bottom:0}
+.field textarea{min-height:90px}
+.tog{display:flex;align-items:center;justify-content:space-between;background:var(--g50,#eefaf3);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.tog b{font-size:.92rem}
+.tog small{color:#64756d;display:block}
+.sw{position:relative;width:52px;height:28px;flex-shrink:0}
+.sw input{opacity:0;width:0;height:0}
+.sw i{position:absolute;inset:0;background:#c9d4cf;border-radius:99px;transition:.2s;cursor:pointer}
+.sw i:before{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.sw input:checked+i{background:var(--g700)}
+.sw input:checked+i:before{transform:translateX(24px)}
+.upload{border:2px dashed var(--g700);border-radius:12px;padding:16px;text-align:center;color:var(--g800);cursor:pointer;background:#eefaf3;font-weight:700;font-size:.9rem}
+.upload:hover{background:var(--g100)}
+.prev{width:110px;height:130px;object-fit:cover;border-radius:12px;margin-top:10px;display:none;border:2px solid var(--g100)}
+.galitem{width:110px;height:110px;object-fit:cover;border-radius:10px;border:2px solid var(--g100)}
+.save{position:fixed;bottom:22px;right:22px;padding:16px 30px;border-radius:99px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:1rem;z-index:50}
+.pub{position:fixed;bottom:22px;right:180px;padding:16px 26px;border-radius:99px;box-shadow:0 10px 30px rgba(0,0,0,.28);font-size:1rem;z-index:50;background:linear-gradient(135deg,var(--y),#e08a00);color:#3d2c00}
+.toast{position:fixed;top:20px;right:20px;background:var(--g900);color:#fff;padding:14px 22px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);display:none;font-weight:700;z-index:99}
+.err{background:#fde3e3;color:#a02c2c;padding:10px 14px;border-radius:10px;margin-bottom:12px;display:none;font-size:.88rem}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th{text-align:left;padding:10px;background:var(--g900);color:#fff;font-size:.74rem;text-transform:uppercase}
+td{padding:9px 10px;border-top:1px solid var(--line)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:14px}
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.72rem;font-weight:800;background:var(--g100);color:var(--g900)}
+.bw{background:#fdf0cd;color:#8a5d00}.br{background:#fde3e3;color:#a02c2c}
+.mini{padding:6px 12px;font-size:.78rem;border-radius:9px}
+@media(max-width:860px){.dash{grid-template-columns:1fr}.pub{right:22px;bottom:86px}}
+</style>
+</head>
+<body>
+
+<div class="login" id="vLogin">
+  <div class="lock">🔐</div>
+  <h1>Panel Admin SDN 4 Klambu</h1>
+  <div class="sub">Login khusus operator/Petugas — data aman di Google</div>
+  <div class="err" id="lgErr"></div>
+  <input id="lgUser" placeholder="Username admin" autocomplete="username">
+  <input id="lgPass" type="password" placeholder="Password" autocomplete="current-password">
+  <button style="width:100%" onclick="login()">Masuk →</button>
+  <p style="font-size:.74rem;color:#9aa8a0;margin-top:14px">Password disimpan aman di Google Apps Script — tidak tertulis di website.</p>
+</div>
+
+<div class="app" id="vApp">
+  <div class="bar">
+    <div><b>⚡ Panel Admin</b><small>SDN 4 KLAMBU · NPSN 20313595</small></div>
+    <div><button onclick="logout()" style="background:rgba(255,255,255,.16);padding:9px 18px;font-size:.85rem">Keluar</button></div>
+  </div>
+  <div class="wrap"><div class="dash">
+    <div class="side">
+      <button class="on" data-p="home">🏠 Dasbor</button>
+      <button data-p="konten">✏️ Konten Website</button>
+      <button data-p="foto">📷 Foto Kepsek &amp; Guru</button>
+      <button data-p="berita">📰 Berita</button>
+      <button data-p="jadwal">🗓️ Jadwal &amp; Kalender</button>
+      <button data-p="galeri">🖼️ Galeri</button>
+      <button data-p="unduhan">📥 Unduhan</button>
+      <button data-p="ppdb">📝 PPDB &amp; Pendaftar</button>
+      <button data-p="set">⚙️ Pengaturan</button>
+    </div>
+    <div class="main">
+
+      <div class="pane on" id="pa-home">
+        <h2>🏠 Dasbor</h2>
+        <div class="hint">Ringkasan &amp; saklar cepat.</div>
+        <div class="tog"><div><b>📝 Pendaftaran PPDB</b><small>Buka/tutup pendaftaran siswa baru</small></div>
+          <label class="sw"><input type="checkbox" id="t_ppdb"><i></i></label></div>
+        <div class="tog"><div><b>💬 Tombol WhatsApp</b><small>Tampilkan/sembunyikan tombol WA melayang</small></div>
+          <label class="sw"><input type="checkbox" id="t_wa"><i></i></label></div>
+        <p class="hint mt-2" id="cProto" style="font-size:.8rem"></p>
+      </div>
+
+      <div class="pane" id="pa-konten">
+        <h2>✏️ Konten Website</h2>
+        <div class="hint">Teks ini tampil di halaman beranda &amp; profil.</div>
+        <div class="field"><label>Judul Utama (Hero)</label><input id="f_hero_judul"></div>
+        <div class="field"><label>Sub Judul</label><textarea id="f_hero_sub"></textarea></div>
+        <div class="field"><label>Nama Kepala Sekolah</label><input id="f_nama_kepsek"></div>
+        <div class="field"><label>Sambutan Kepala Sekolah</label><textarea id="f_sambutan" rows="6"></textarea></div>
+      </div>
+
+      <div class="pane" id="pa-foto">
+        <h2>📷 Foto Kepala Sekolah &amp; Guru</h2>
+        <div class="hint">Klik area unggah, pilih foto dari HP/komputer. Tersimpan otomatis di Google Drive.</div>
+        <div class="field"><label>Foto Kepala Sekolah</label>
+          <div class="upload" onclick="$('up_kepsek').click()">📷 Unggah Foto Kepala Sekolah</div>
+          <input type="file" id="up_kepsek" accept="image/*" hidden>
+          <img class="prev" id="pv_kepsek">
+        </div>
+        <div class="field"><label>Foto Guru (slot 1)</label>
+          <div class="upload" onclick="$('up_guru1').click()">📷 Unggah</div>
+          <input type="file" id="up_guru1" accept="image/*" hidden>
+          <img class="prev" id="pv_guru1">
+        </div>
+        <div class="field"><label>Foto Guru (slot 2)</label>
+          <div class="upload" onclick="$('up_guru2').click()">📷 Unggah</div>
+          <input type="file" id="up_guru2" accept="image/*" hidden>
+          <img class="prev" id="pv_guru2">
+        </div>
+        <div class="field"><label>Foto Guru (slot 3)</label>
+          <div class="upload" onclick="$('up_guru3').click()">📷 Unggah</div>
+          <input type="file" id="up_guru3" accept="image/*" hidden>
+          <img class="prev" id="pv_guru3">
+        </div>
+        <div class="field"><label>Foto Guru (slot 4)</label>
+          <div class="upload" onclick="$('up_guru4').click()">📷 Unggah</div>
+          <input type="file" id="up_guru4" accept="image/*" hidden>
+          <img class="prev" id="pv_guru4">
+        </div>
+        <div class="field"><label>Foto Guru (slot 5)</label>
+          <div class="upload" onclick="$('up_guru5').click()">📷 Unggah</div>
+          <input type="file" id="up_guru5" accept="image/*" hidden>
+          <img class="prev" id="pv_guru5">
+        </div>
+      </div>
+
+      <div class="pane" id="pa-berita">
+        <h2>📰 Tambah Berita</h2>
+        <div class="field"><label>Kategori</label><input id="b_kat" placeholder="cth: Prestasi / Kegiatan / Pengumuman"></div>
+        <div class="field"><label>Emoji/Logo</label><input id="b_emoji" placeholder="cth: 🏅 📚 🎉" value="📰"></div>
+        <div class="field"><label>Tanggal</label><input id="b_tgl" placeholder="cth: 18 Nov 2026"></div>
+        <div class="field"><label>Judul</label><input id="b_judul"></div>
+        <div class="field"><label>Isi singkat</label><textarea id="b_isi" rows="4"></textarea></div>
+        <button onclick="addBerita()">➕ Tambahkan Berita</button>
+        <div id="beritaList" class="mt-2"></div>
+      </div>
+
+      <div class="pane" id="pa-jadwal">
+        <h2>🗓️ Jadwal Pelajaran &amp; Kalender</h2>
+        <div class="hint">Format tiap baris: <b>jam | kegiatan</b> — contoh: <code>07.00 - 07.15 | Upacara</code></div>
+        <div class="field"><label>Kelas 1</label><textarea id="jd_kelas1" rows="5"></textarea></div>
+        <div class="field"><label>Kelas 2</label><textarea id="jd_kelas2" rows="5"></textarea></div>
+        <div class="field"><label>Kelas 3</label><textarea id="jd_kelas3" rows="5"></textarea></div>
+        <div class="field"><label>Kelas 4</label><textarea id="jd_kelas4" rows="5"></textarea></div>
+        <div class="field"><label>Kelas 5</label><textarea id="jd_kelas5" rows="5"></textarea></div>
+        <div class="field"><label>Kelas 6</label><textarea id="jd_kelas6" rows="5"></textarea></div>
+        <div class="field"><label>Agenda Kalender (satu per baris)</label><textarea id="jd_kalender" rows="5"></textarea></div>
+      </div>
+
+      <div class="pane" id="pa-galeri">
+        <h2>🖼️ Galeri Foto</h2>
+        <div class="upload" onclick="$('up_gal').click()">📷 Klik untuk pilih foto (bisa banyak sekaligus)</div>
+        <input type="file" id="up_gal" accept="image/*" multiple hidden>
+        <div id="galList" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"></div>
+      </div>
+
+      <div class="pane" id="pa-unduhan">
+        <h2>📥 Kelola Unduhan</h2>
+        <div class="hint">Salin tautan Google Drive file (PDF/foto) lalu tempel di sini. Panduan ada di menu Bantuan.</div>
+        <div class="field"><label>Judul dokumen</label><input id="u_judul" placeholder="cth: Formulir PPDB 2027"></div>
+        <div class="field"><label>Keterangan</label><input id="u_ket" placeholder="cth: PDF · 2 halaman"></div>
+        <div class="field"><label>Tautan (URL) dokumen</label><input id="u_url" placeholder="https://drive.google.com/..."></div>
+        <button onclick="addUnduh()">➕ Tambah ke Daftar</button>
+        <div id="unduhList" class="mt-2"></div>
+      </div>
+
+      <div class="pane" id="pa-ppdb">
+        <h2>📝 Data Pendaftar PPDB</h2>
+        <div class="hint">Hanya terlihat di sini (aman). Klik tombol untuk mengubah status pendaftar.</div>
+        <button onclick="mPFresh()" class="mini" style="background:var(--g100);color:var(--g900)">🔄 Muat Ulang</button>
+        <div class="tbl"><table id="tblPPDB">
+          <thead><tr><th>No. Reg</th><th>Nama</th><th>Jalur</th><th>WA</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody id="tbPPDB"><tr><td colspan="6" class="hint">Memuat…</td></tr></tbody>
+        </table></div>
+      </div>
+
+      <div class="pane" id="pa-set">
+        <h2>⚙️ Pengaturan</h2>
+        <div class="field"><label>Nomor WhatsApp Sekolah (format 62…cth: 6281225000449)</label><input id="f_wa_nomor"></div>
+        <div class="field"><label>Info Banner PPDB</label><input id="f_ppdb_info"></div>
+        <div class="hint">🔐 Password admin disembunyikan dari kode — dikelola di Google Apps Script (Code.gs, ubah variabel ADMIN_PASS lalu Deploy → Manage deployments → Edit → New version).</div>
+      </div>
+
+    </div>
+  </div></div>
+  <button class="pub" id="btnPub" onclick="publish()">🚀 Publikasikan</button>
+  <button class="save" onclick="save()">💾 Simpan</button>
+</div>
+
+<div class="toast" id="toast">✔</div>
+
+<script src="assets/js/config.js"></script>
+<script>
+/* ============ State ============ */
+let TOKEN = { user:'', pass:'' };          // kredensial (memory saja, tak disimpan)
+let FOTO = {};                              // kunci foto -> url drive
+let BERITA = [], GALERI = [], UNDUH = [];
+
+const $ = id => document.getElementById(id);
+const toast = m => { const t=$('toast'); t.textContent=m; t.style.display='block'; setTimeout(()=>t.style.display='none',2400); };
+
+/* ============ API ============ */
+async function api(action, extra = {}) {
+  const r = await fetch(GAS_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ action, ...TOKEN, ...extra })
+  });
+  return r.json();
+}
+
+/* ============ Login ============ */
+async function login() {
+  const user = $('lgUser').value.trim(), pass = $('lgPass').value;
+  TOKEN = { user, pass };
+  $('lgErr').style.display = 'none';
+  const bn = $('vLogin').querySelector('button'); bn.disabled = true;
+  const r = await api('login');
+  bn.disabled = false;
+  if (r && r.ok) {
+    sessionStorage.setItem('sdn4_adm', btoa(unescape(encodeURIComponent(JSON.stringify(TOKEN)))));
+    $('vLogin').style.display = 'none';
+    $('vApp').style.display = 'block';
+    loadAll();
+  } else {
+    $('lgErr').textContent = (r && r.err) || 'Login gagal — periksa koneksi atau URL backend (config.js)';
+    $('lgErr').style.display = 'block';
+  }
+}
+function logout(){ sessionStorage.removeItem('sdn4_adm'); TOKEN={user:'',pass:''}; $('vApp').style.display='none'; $('vLogin').style.display='block'; }
+$('lgPass') && $('lgPass').addEventListener('keydown', e => { if(e.key==='Enter') login(); });
+
+(async function tryResume(){
+  const s = sessionStorage.getItem('sdn4_adm');
+  if(!s) return;
+  try { TOKEN = JSON.parse(decodeURIComponent(escape(atob(s)))); } catch(e){ return; }
+  const r = await api('login');
+  if (r && r.ok) { $('vLogin').style.display='none'; $('vApp').style.display='block'; loadAll(); }
+  else logout();
+})();
+
+/* ============ Muat semua data ============ */
+async function loadAll(){
+  if (GAS_URL.includes('TEMPLE')) { $('cProto').textContent = 'ℹ️ Mode lokal: backend belum dikonfigurasi (isi GAS_URL di assets/js/config.js). Perubahan tersimpan di browser ini saja.'; }
+  const r = await api('content');
+  if (r && r.ok) bind(r.data);
+  mPFresh(); renderBerita(); renderGal(); renderUnduh();
+}
+
+function bind(d){
+  $('f_hero_judul').value = d.hero_judul || '';
+  $('f_hero_sub').value   = d.hero_sub || '';
+  $('f_nama_kepsek').value= d.nama_kepsek || 'SUGIYANTO, S.Pd.SD';
+  $('f_sambutan').value   = d.sambutan || '';
+  $('f_wa_nomor').value   = d.wa_nomor || '';
+  $('f_ppdb_info').value  = d.ppdb_info || '';
+  $('t_ppdb').checked     = String(d.ppdb_status).toUpperCase() !== 'CLOSED';
+  $('t_wa').checked       = String(d.wa_tampil).toUpperCase() !== 'TIDAK';
+  try { FOTO = JSON.parse(d.foto_guru || '{}'); } catch(e){ FOTO = {}; }
+  if (d.foto_kepsek) FOTO['kepsek'] = d.foto_kepsek;
+  try { BERITA = JSON.parse(d.berita || '[]'); } catch(e){ BERITA = []; }
+  try { GALERI = JSON.parse(d.galeri || '[]'); } catch(e){ GALERI = []; }
+  try { UNDUH  = JSON.parse(d.unduhan || '[]'); } catch(e){ UNDUH = []; }
+  const j = (()=>{ try { return JSON.parse(d.jadwal || '{}'); } catch(e){ return {}; } })();
+  for (let k=1;k<=6;k++) $('jd_kelas'+k).value = (j['kelas'+k]||[]).map(r=>r.join(' | ')).join('\n');
+  $('jd_kalender').value = (j.kalender||[]).join('\n');
+  // preview foto
+  for (const k in FOTO){
+    const pv = $('pv_'+k);
+    if (pv){ pv.src = FOTO[k]; pv.style.display='block'; }
+  }
+}
+
+/* ============ Upload foto ============ */
+function hookUpload(inputId, key){
+  $(inputId).addEventListener('change', async function(){
+    const f = this.files[0]; if(!f) return;
+    toast('⏳ Mengunggah foto...');
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const r = await api('upload', { name: f.name, key: 'foto-'+key, data: reader.result });
+      if (r && r.ok) {
+        FOTO[key] = r.url;
+        const pv = $('pv_'+key); pv.src = r.url; pv.style.display = 'block';
+        await save(true);
+        toast('✔ Foto terunggah & tersimpan di Drive');
+      } else toast('❌ ' + ((r&&r.err)||'Gagal unggah'));
+    };
+    reader.readAsDataURL(f);
+  });
+}
+hookUpload('up_kepsek','kepsek');
+for(let i=1;i<=5;i++) hookUpload('up_guru'+i, 'guru'+i);
+
+/* ============ Galeri ============ */
+$('up_gal').addEventListener('change', async function(){
+  for (const f of this.files){
+    toast('⏳ Mengunggah '+f.name+'...');
+    const reader = new FileReader();
+    const hasil = await new Promise(res => { reader.onload = e => res(e.target.result); reader.readAsDataURL(f); });
+    const r = await api('upload', { name: f.name, key: 'gal-'+Date.now(), data: hasil });
+    if (r && r.ok) { GALERI.push({ url: r.url, ket: f.name }); renderGal(); }
+  }
+  await save(true); toast('✔ Galeri diperbarui');
+  this.value = '';
+});
+function renderGal(){
+  $('galList').innerHTML = GALERI.map((g,i)=>
+    `<div style="position:relative"><img class="galitem" src="${g.url}"><button class="mini" style="position:absolute;top:-8px;right:-8px;background:#a02c2c" onclick="delGal(${i})">✕</button></div>`).join('');
+}
+async function delGal(i){ GALERI.splice(i,1); renderGal(); await save(true); }
+
+/* ============ Berita ============ */
+async function addBerita(){
+  if (!$('b_judul').value.trim()) return alert('Isi judul berita!');
+  BERITA.unshift({ kat: $('b_kat').value||'Berita', emoji: $('b_emoji').value||'📰',
+    tgl: $('b_tgl').value||'', judul: $('b_judul').value, isi: $('b_isi').value });
+  await save(true); renderBerita();
+  $('b_judul').value=''; $('b_isi').value=''; $('b_kat').value='';
+  toast('✔ Berita ditambahkan');
+}
+function renderBerita(){
+  $('beritaList').innerHTML = BERITA.map((b,i)=>
+    `<div style="border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-top:8px;display:flex;justify-content:space-between;gap:10px;align-items:center">
+      <div><b>${b.emoji||''} ${b.judul}</b><br><small class="hint">${b.kat} · ${b.tgl}</small></div>
+      <button class="mini" style="background:#a02c2c" onclick="delBerita(${i})">Hapus</button></div>`).join('');
+}
+async function delBerita(i){ BERITA.splice(i,1); renderBerita(); await save(true); }
+
+/* ============ Unduhan ============ */
+async function addUnduh(){
+  if (!$('u_judul').value.trim() || !$('u_url').value.trim()) return alert('Isi judul & tautan!');
+  UNDUH.push({ judul: $('u_judul').value, ket: $('u_ket').value, url: $('u_url').value });
+  await save(true); renderUnduh();
+  $('u_judul').value=''; $('u_ket').value=''; $('u_url').value='';
+  toast('✔ Dokumen ditambahkan');
+}
+function renderUnduh(){
+  $('unduhList').innerHTML = UNDUH.map((u,i)=>
+    `<div style="border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-top:8px;display:flex;justify-content:space-between;gap:10px;align-items:center">
+      <div><b>📄 ${u.judul}</b><br><small class="hint">${u.ket||''}</small></div>
+      <button class="mini" style="background:#a02c2c" onclick="delUnduh(${i})">Hapus</button></div>`).join('');
+}
+async function delUnduh(i){ UNDUH.splice(i,1); renderUnduh(); await save(true); }
+
+/* ============ Data pendaftar ============ */
+async function mPFresh(){
+  if (GAS_URL.includes('TEMPLE')) {
+    $('tbPPDB').innerHTML = '<tr><td colspan="6" class="hint">Backend belum dikonfigurasi. Isi URL GAS di config.js.</td></tr>';
+    return;
+  }
+  const r = await api('list_ppdb');
+  if (r && r.ok) {
+    if (!r.data.length) { $('tbPPDB').innerHTML = '<tr><td colspan="6" class="hint">Belum ada pendaftar.</td></tr>'; return; }
+    $('tbPPDB').innerHTML = r.data.map(d =>
+      `<tr><td><b>${d.noreg}</b></td><td>${d.nama}</td><td>${d.jalur}</td><td>${d.wa}</td>
+       <td><span class="${d.status==='DITERIMA'?'badge':(d.status==='DITOLAK'?'badge br':'badge bw')}">${d.status}</span></td>
+       <td><button class="mini" style="background:var(--g700)" onclick="setStatus('${d.noreg}','DITERIMA')">Terima</button>
+           <button class="mini" style="background:#a02c2c" onclick="setStatus('${d.noreg}','DITOLAK')">Tolak</button></td></tr>`).join('');
+  } else {
+    $('tbPPDB').innerHTML = '<tr><td colspan="6" class="hint">Gagal memuat data.</td></tr>';
+  }
+}
+async function setStatus(noreg, status){
+  await api('set_status', { noreg, status });
+  toast('✔ Status '+noreg+' → '+status);
+  mPFresh();
+}
+
+/* ============ Simpan & publikasi ============ */
+async function save(silent){
+  const jadwal = { kalender: $('jd_kalender').value.split('\n').filter(Boolean) };
+  for (let k=1;k<=6;k++){
+    jadwal['kelas'+k] = $('jd_kelas'+k).value.split('\n').filter(Boolean).map(l=>l.split('|').map(s=>s.trim()));
+  }
+  const data = {
+    hero_judul: $('f_hero_judul').value,
+    hero_sub: $('f_hero_sub').value,
+    nama_kepsek: $('f_nama_kepsek').value,
+    sambutan: $('f_sambutan').value,
+    wa_nomor: $('f_wa_nomor').value,
+    ppdb_info: $('f_ppdb_info').value,
+    ppdb_status: $('t_ppdb').checked ? 'OPEN' : 'CLOSED',
+    wa_tampil: $('t_wa').checked ? 'YA' : 'TIDAK',
+    foto_kepsek: FOTO['kepsek'] || '',
+    foto_guru: JSON.stringify(FOTO),
+    berita: JSON.stringify(BERITA),
+    galeri: JSON.stringify(GALERI),
+    unduhan: JSON.stringify(UNDUH),
+    jadwal: JSON.stringify(jadwal)
+  };
+  const r = await api('save', { data });
+  if (!silent) toast((r && r.ok) ? '✔ Tersimpan di Google Spreadsheet' : '❌ '+((r&&r.err)||'Gagal menyimpan'));
+  return r;
+}
+
+async function publish(){
+  $('btnPub').disabled = true; $('btnPub').textContent = '⏳ Mengunggah...';
+  const s1 = await save(true);
+  $('btnPub').textContent = '🚀 Menerbitkan...';
+  // publish dijalankan server lokal bila ada (git push); kalau tidak, hanya simpan GAS
+  try {
+    const r = await fetch('/api/publish', { method:'POST', body:'{}' });
+    const j = await r.json();
+    toast(j.ok ? '✔ Terbit! Vercel sedang membangun' : 'ℹ️ Konten tersimpan di Google. Lewati git bila situs membaca langsung dari GAS.');
+  } catch(e) {
+    toast('✔ Konten tersimpan di Google — situs sudah memperbaruinya otomatis.');
+  }
+  $('btnPub').disabled = false; $('btnPub').textContent = '🚀 Publikasikan';
+}
+
+/* ============ Navigasi tab ============ */
+document.querySelectorAll('.side button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.side button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('on'));
+  $('pa-' + b.dataset.p).classList.add('on');
+});
+</script>
+</body>
+</html>

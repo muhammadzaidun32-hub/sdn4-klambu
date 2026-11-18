@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <rect width="640" height="420" fill="#e0f2fe"/>
+  <!-- komputer lab -->
+  <g fill="#0f2a5c">
+    <rect x="90" y="140" width="120" height="82" rx="8"/>
+    <rect x="260" y="140" width="120" height="82" rx="8"/>
+    <rect x="430" y="140" width="120" height="82" rx="8"/>
+  </g>
+  <g fill="#7dd3fc">
+    <rect x="102" y="152" width="96" height="52" rx="4"/>
+    <rect x="272" y="152" width="96" height="52" rx="4"/>
+    <rect x="442" y="152" width="96" height="52" rx="4"/>
+  </g>
+  <g fill="#0f2a5c">
+    <rect x="130" y="228" width="40" height="12" rx="4"/>
+    <rect x="300" y="228" width="40" height="12" rx="4"/>
+    <rect x="470" y="228" width="40" height="12" rx="4"/>
+  </g>
+  <!-- meja -->
+  <rect x="60" y="244" width="520" height="16" rx="6" fill="#92400e"/>
+  <rect x="90" y="260" width="20" height="120" fill="#b45309"/>
+  <rect x="530" y="260" width="20" height="120" fill="#b45309"/>
+  <text x="150" y="186" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#7dd3fc">&lt;/&gt;</text>
+  <text x="320" y="186" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#7dd3fc">01</text>
+  <text x="490" y="186" text-anchor="middle" font-family="Arial" font-size="26" font-weight="bold" fill="#7dd3fc">10</text>
+  <rect x="0" y="380" width="640" height="40" fill="#a7f3d0"/>
+</svg>
