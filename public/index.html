@@ -59,6 +59,27 @@
   .mom-dot.active { width: 20px; }
 }
 </style>
+<style>
+/* ============ Slideshow latar hero ============ */
+.hero { position: relative; overflow: hidden; }
+.hero-slides { position: absolute; inset: 0; z-index: 0; }
+.hero .hslide {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.hero .hslide.active { opacity: 1; }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(110deg,
+    rgba(13,107,63,.94) 0%,
+    rgba(13,107,63,.88) 45%,
+    rgba(16,128,75,.72) 100%);
+}
+.hero-inner, .hero-stats { position: relative; z-index: 2; }
+</style>
 </head>
 <body>
 
@@ -97,7 +118,15 @@
 </header>
 
 <section class="hero">
-  <div class="hero-bg"></div>
+  <!-- Slideshow foto sebagai latar belakang hero -->
+  <div class="hero-slides" aria-hidden="true">
+    <img class="hslide active" src="assets/img/hero-sekolah.svg" alt="">
+    <img class="hslide" src="assets/img/upacara.svg" alt="">
+    <img class="hslide" src="assets/img/pramuka.svg" alt="">
+    <img class="hslide" src="assets/img/olahraga.svg" alt="">
+    <img class="hslide" src="assets/img/wisuda.svg" alt="">
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div>
       <span class="hero-kicker">✦ Selamat Datang di Website Resmi</span>
@@ -108,15 +137,6 @@
         <a class="btn btn-ghost" href="profil.html">Lihat Profil Sekolah →</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="avatar-kepsek">👨‍🏫</div>
-        <span class="role">Kepala Sekolah</span>
-        <h3 id="k_nm">SUGIYANTO, S.Pd.SD</h3>
-        <p class="quote" id="k_tx">“Setiap anak adalah bintang yang bersinar. Tugas kami membimbing mereka tumbuh cerdas, berakhlak, dan percaya diri.”</p>
-      </div>
-    </div>
-  </div>
   <div class="container hero-stats">
     <div class="hstat"><b>🏅 B</b><span>Akreditasi BAN-PDM 2029</span></div>
     <div class="hstat"><b>180+</b><span>Peserta Didik Aktif</span></div>
@@ -334,6 +354,19 @@
   function start() { timer = setInterval(() => go(cur + 1), 4000); }
   function restart() { clearInterval(timer); start(); }
   if (slides.length > 1) start();
+})();
+</script>
+<script>
+/* ---------- Autoplay slideshow latar hero (5 foto, 5 dtk) ---------- */
+(function () {
+  const slides = [...document.querySelectorAll('.hero .hslide')];
+  if (slides.length < 2) return;
+  let cur = 0;
+  setInterval(() => {
+    slides[cur].classList.remove('active');
+    cur = (cur + 1) % slides.length;
+    slides[cur].classList.add('active');
+  }, 5000);
 })();
 </script>
 </body>
