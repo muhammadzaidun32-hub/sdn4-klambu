@@ -585,3 +585,7 @@ footer.site a:hover { color: #ffd75e; }
   font-size: .95rem;
   font-weight: 600;
 }
+
+/* ============ Link bantu admin ============ */
+.hint a { color: var(--green-700); font-weight: 700; text-decoration: underline; }
+.hint a:hover { color: var(--green-900); }

@@ -85,6 +85,7 @@ td{padding:9px 10px;border-top:1px solid var(--line)}
       <button class="on" data-p="home">🏠 Dasbor</button>
       <button data-p="konten">✏️ Konten Website</button>
       <button data-p="foto">📷 Foto Kepsek &amp; Guru</button>
+      <button data-p="kegiatan">🎒 Foto Kegiatan</button>
       <button data-p="berita">📰 Berita</button>
       <button data-p="jadwal">🗓️ Jadwal &amp; Kalender</button>
       <button data-p="galeri">🖼️ Galeri</button>
@@ -145,6 +146,28 @@ td{padding:9px 10px;border-top:1px solid var(--line)}
           <div class="upload" onclick="$('up_guru5').click()">📷 Unggah</div>
           <input type="file" id="up_guru5" accept="image/*" hidden>
           <img class="prev" id="pv_guru5">
+        </div>
+        <div class="hint" style="margin-top:8px">
+          🔗 Tautan bantu:
+          <a href="profil.html#daftar-guru" target="_blank" rel="noopener">Lihat hasil di halaman Profil (Daftar Guru)</a>
+          ·
+          <a href="#" onclick="bukaDrive();return false">Buka Google Drive (folder foto)</a>
+        </div>
+      </div>
+
+      <div class="pane" id="pa-kegiatan">
+        <h2>🎒 Foto Kegiatan Sekolah</h2>
+        <div class="hint">Unggah foto kegiatan (upacara, pramuka, wisuda, dll). Foto tampil di Galeri &amp; Beranda. Tersimpan di Google Drive.</div>
+        <div class="field"><label>Upload multiple</label>
+          <div class="upload" onclick="$('up_keg').click()">📷 Pilih Foto Kegiatan (bisa banyak)</div>
+          <input type="file" id="up_keg" accept="image/*" multiple hidden>
+        </div>
+        <div id="kegList" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"></div>
+        <div class="hint" style="margin-top:10px">
+          🔗 Tautan bantu:
+          <a href="galeri.html" target="_blank" rel="noopener">Lihat halaman Galeri</a>
+          ·
+          <a href="#" onclick="bukaDrive();return false">Buka Google Drive</a>
         </div>
       </div>
 
@@ -315,6 +338,30 @@ function hookUpload(inputId, key){
 }
 hookUpload('up_kepsek','kepsek');
 for(let i=1;i<=5;i++) hookUpload('up_guru'+i, 'guru'+i);
+
+/* ============ Foto Kegiatan ============ */
+$('up_keg').addEventListener('change', async function(){
+  for (const f of this.files){
+    toast('⏳ Mengunggah '+f.name+'...');
+    const reader = new FileReader();
+    const hasil = await new Promise(res => { reader.onload = e => res(e.target.result); reader.readAsDataURL(f); });
+    const r = await api('upload', { name: f.name, key: 'keg-'+Date.now(), data: hasil });
+    if (r && r.ok) { GALERI.push({ url: r.url, ket: f.name }); }
+  }
+  renderGal(); renderKeg();
+  await save(true); toast('✔ Foto kegiatan tersimpan & tampil di Galeri');
+  this.value = '';
+});
+function renderKeg(){
+  const box = $('kegList'); if (!box) return;
+  box.innerHTML = GALERI.map((g,i)=>
+    `<div style="position:relative"><img class="galitem" src="${g.url}" title="${g.ket||''}"><button class="mini" style="position:absolute;top:-8px;right:-8px;background:#a02c2c" onclick="delGal(${i})">✕</button></div>`).join('');
+}
+/* ============ Buka Google Drive folder foto ============ */
+function bukaDrive(){
+  // Folder SDN4-KLAMBU dibuat otomatis oleh Code.gs; buka folder "SDN4-KLAMBU" via pencarian Drive
+  window.open('https://drive.google.com/drive/search?q=SDN4-KLAMBU', '_blank', 'noopener');
+}
 
 /* ============ Galeri ============ */
 $('up_gal').addEventListener('change', async function(){
