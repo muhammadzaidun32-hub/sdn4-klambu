@@ -10,6 +10,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ============ Slider Momen Kegiatan ============ */
+.mom-slider { position: relative; max-width: 760px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: #0d6b3f; }
+.mom-track { position: relative; aspect-ratio: 16/9; }
+.mom-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .7s ease; }
+.mom-slide.active { opacity: 1; }
+.mom-ctrl {
+  position: absolute;
+  left: 0; right: 0; bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 5;
+}
+.mom-arr {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, .85);
+  color: var(--green-900);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+  transition: .18s;
+}
+.mom-arr:hover { background: #fff; transform: scale(1.08); }
+.mom-dots { display: flex; gap: 8px; align-items: center; }
+.mom-dot {
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, .55);
+  cursor: pointer;
+  transition: .25s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+.mom-dot.active { width: 26px; background: #ffd75e; }
+@media (max-width: 480px) {
+  .mom-arr { width: 34px; height: 34px; font-size: .95rem; }
+  .mom-ctrl { gap: 8px; bottom: 10px; }
+  .mom-dot { width: 8px; height: 8px; }
+  .mom-dot.active { width: 20px; }
+}
+</style>
 </head>
 <body>
 
@@ -242,5 +291,50 @@
 <script src="assets/js/config.js"></script>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+/* ---------- Slider Momen Kegiatan (5 gambar) ----------
+   Titik = nomor slide berjalan; panah kiri/kanan di antara titik;
+   semua di tengah bagian bawah gambar; autoplay 4 detik. */
+(function () {
+  const slider = document.getElementById('momSlider');
+  if (!slider) return;
+  const slides = [...slider.querySelectorAll('.mom-slide')];
+  const dotsBox = document.getElementById('momDots');
+  let cur = 0, timer = null;
+
+  slides.forEach((s, i) => {
+    const d = document.createElement('button');
+    d.className = 'mom-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Ke slide ' + (i + 1));
+    d.addEventListener('click', () => { go(i); restart(); });
+    dotsBox.appendChild(d);
+  });
+  const dots = [...dotsBox.children];
+
+  function go(i) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (i + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+
+  document.getElementById('momPrev').addEventListener('click', () => { go(cur - 1); restart(); });
+  document.getElementById('momNext').addEventListener('click', () => { go(cur + 1); restart(); });
+
+  // swipe di layar sentuh
+  let sx = 0;
+  slider.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) { go(cur + (dx < 0 ? 1 : -1)); restart(); }
+  }, { passive: true });
+
+  // autoplay
+  function start() { timer = setInterval(() => go(cur + 1), 4000); }
+  function restart() { clearInterval(timer); start(); }
+  if (slides.length > 1) start();
+})();
+</script>
 </body>
 </html>
